@@ -1,0 +1,17 @@
+# Archivos de configuración sensibles
+config.json
+
+#scripts de desarrollo
+dev/
+
+# Basura de Python
+__pycache__/
+*.pyc
+
+# Basura de compilación de PyInstaller
+build/
+dist/
+*.spec
+
+# Ejecutables de Windows
+*.exe
