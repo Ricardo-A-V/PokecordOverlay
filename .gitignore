@@ -4,6 +4,9 @@ config.json
 #scripts de desarrollo
 dev/
 
+#releases
+releases/
+
 # Basura de Python
 __pycache__/
 *.pyc
