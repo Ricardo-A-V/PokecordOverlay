@@ -1,6 +1,6 @@
-# Pokémon Discord Voice Overlay
+# Pokemon Discord Voice Overlay
 
-A lightweight, borderless desktop overlay that displays Pokémon sprites reacting in real-time to Discord voice channel activity.
+A lightweight, borderless desktop overlay that displays Pokemon sprites reacting in real-time to Discord voice channel activity.
 
 Built with Python and PyQt6, this application bypasses Windows Taskbar Z-order restrictions to remain strictly topmost while being completely transparent to mouse inputs (click-through). It relies on Discord's StreamKit WebEngine, meaning it does not require Discord API developer tokens or bot installations.
 
@@ -28,9 +28,9 @@ Due to Discord's privacy model, voice data is extracted via their official broad
 5. Copy the generated URL located in the dark preview box on the right side of the screen.
 6. Open `config.json` and paste this URL into the `"channels"` block. You can save multiple channels by giving them unique names.
 
-### 2. Mapping Users to Pokémon
+### 2. Mapping Users to Pokemon
 
-The `"users"` block in `config.json` maps a user's Discord ID to a specific Pokémon sprite.
+The `"users"` block in `config.json` maps a user's Discord ID to a specific Pokemon sprite.
 
 **How to get a Discord User ID:**
 
@@ -50,6 +50,6 @@ _Note: If an unmapped user joins the voice channel, the application will automat
 ## 🚀 Usage
 
 1. Double-click the executable. There is no main window; this is intentional.
-2. The Pokémon sprites will instantly appear at the bottom left of your primary monitor once users connect to the configured voice channel.
+2. The Pokemon sprites will instantly appear at the bottom left of your primary monitor once users connect to the configured voice channel.
 3. **Changing Channels & Exiting:** Locate the application icon (computer shape) in your Windows System Tray (bottom right, near the clock).
    - **Left Click:** Opens a quick menu to switch between the Discord channels defined in your `config.json` and opens the context menu to safely quit the application.
