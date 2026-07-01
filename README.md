@@ -1,56 +1,55 @@
 # Pokémon Discord Voice Overlay
 
-Un overlay de escritorio ligero que muestra sprites de Pokémon reaccionando en tiempo real a las comunicaciones de voz en Discord. Diseñado para atravesar la barra de tareas de Windows y funcionar sin consumir recursos excesivos.
+A lightweight, borderless desktop overlay that displays Pokémon sprites reacting in real-time to Discord voice channel activity.
 
-## ⚠️ REQUISITO CRÍTICO DE EJECUCIÓN
+Built with Python and PyQt6, this application bypasses Windows Taskbar Z-order restrictions to remain strictly topmost while being completely transparent to mouse inputs (click-through). It relies on Discord's StreamKit WebEngine, meaning it does not require Discord API developer tokens or bot installations.
 
-El archivo `PokemonOverlay.exe` **NO** puede ejecutarse de forma aislada. Para que el programa funcione, debe estar siempre en la misma carpeta que:
+## 📥 Installation (End Users)
 
-1. El archivo `config.json`
-2. La carpeta `assets/` (que contiene los sprites)
+Do not download the source code unless you intend to modify it. For standard use, download the compiled release.
 
-Si sacas el `.exe` al escritorio y dejas las carpetas atrás, el programa colapsará inmediatamente. Crea un acceso directo del `.exe` si deseas lanzarlo desde otro lugar.
+1. Go to the [Releases](../../releases) page of this repository.
+2. Download the latest `.zip` file.
+3. Extract the contents into a folder.
+4. **CRITICAL:** The executable (`.exe`) must always remain in the same directory as the `assets/` folder and the `config.json` file. If you separate them, the application will crash. Create a shortcut of the executable if you want to launch it from your desktop.
+
+## ⚙️ Configuration
+
+Before running the application, you must configure your `config.json` file (rename `config.example.json` to `config.json` if you are setting it up for the first time).
+
+### 1. Extracting your StreamKit URL
+
+Due to Discord's privacy model, voice data is extracted via their official broadcasting widget.
+
+1. Open your browser and navigate to: [Discord StreamKit Overlay](https://streamkit.discord.com/overlay)
+2. Click on **Install for OBS**.
+3. Select the **Voice Widget** tab at the top.
+4. Using the dropdown menus, select your target **Server** and **Voice Channel**.
+5. Copy the generated URL located in the dark preview box on the right side of the screen.
+6. Open `config.json` and paste this URL into the `"channels"` block. You can save multiple channels by giving them unique names.
+
+### 2. Mapping Users to Pokémon
+
+The `"users"` block in `config.json` maps a user's Discord ID to a specific Pokémon sprite.
+
+**How to get a Discord User ID:**
+
+1. In Discord, go to User Settings > Advanced > Enable **Developer Mode**.
+2. Right-click any user's avatar and select **Copy User ID**.
+3. Paste the ID as a key in the JSON file.
+
+**User Parameters:**
+
+- `"species"`: The exact name of the folder inside `assets/sprites/` (e.g., `"gengar"`).
+- `"offset_y"`: Vertical adjustment in pixels. Use negative values (e.g., `-10`) to lower the sprite, or positive values to raise it.
+
+_Note: If an unmapped user joins the voice channel, the application will automatically render the fallback species defined in the `"default"` variable (e.g., `"ditto"`)._
 
 ---
 
-## ⚙️ Configuración Inicial
+## 🚀 Usage
 
-Para usar la aplicación, debes renombrar el archivo `config.example.json` a `config.json` y configurarlo con tus datos.
-
-### 1. Obtener la URL de StreamKit (El puente de conexión)
-
-Debido a las restricciones de privacidad de Discord, la aplicación extrae la información de voz mediante la herramienta oficial para streamers.
-
-1. Abre tu navegador y ve a: [https://streamkit.discord.com/overlay](https://streamkit.discord.com/overlay)
-2. Haz clic en **Install for OBS**.
-3. En la parte superior, selecciona la pestaña **Voice Widget**.
-4. En los menús desplegables de la izquierda, selecciona tu **Servidor** y el **Canal de voz** en el que sueles estar.
-5. Copia la URL larguísima que aparece en el recuadro gris de la derecha.
-6. Abre tu archivo `config.json` y pega esa URL dentro del bloque `"channels"`. Puedes guardar varias salas poniéndoles un nombre distintivo.
-
-### 2. Asignar Pokémon a los Usuarios
-
-El bloque `"users"` del `config.json` empareja la ID de Discord de un usuario con un sprite de Pokémon.
-
-**Cómo obtener una ID de Discord:**
-
-1. En Discord, ve a Ajustes de Usuario > Avanzado > Activa el **Modo Desarrollador**.
-2. Haz clic derecho sobre el avatar de cualquier persona en un canal de voz o chat y selecciona **Copiar ID de usuario**.
-3. Pega esa ID como clave en el `config.json`.
-
-**Parámetros por usuario:**
-
-- `"species"`: El nombre del Pokémon. Debe coincidir exactamente con el nombre de la carpeta dentro de `assets/sprites/` (ej. `"gengar"`).
-- `"offset_y"`: Ajuste vertical en píxeles. Si el sprite queda muy alto, usa números negativos (ej. `-10`) para bajarlo; si queda hundido, usa números positivos.
-
-_Nota: Si un usuario entra a la llamada y no está registrado en tu `config.json`, la aplicación renderizará automáticamente la especie definida en la variable `"default"` (por defecto, Ditto)._
-
----
-
-## 🚀 Uso de la Aplicación
-
-1. Haz doble clic en `PokemonOverlay.exe`. No aparecerá ninguna ventana principal, esto es normal.
-2. Los Pokémon aparecerán instantáneamente en la parte inferior izquierda de tu pantalla principal cuando los usuarios entren al canal de voz configurado.
-3. **Cambiar de Canal o Cerrar:** Busca el icono con forma de computadora en tu bandeja del sistema (esquina inferior derecha de Windows, junto al reloj).
-   - **Clic Izquierdo:** Despliega un menú rápido para alternar entre las distintas salas de Discord que hayas guardado en tu `config.json`.
-   - **Clic Derecho / Cerrar:** Termina el proceso de la aplicación limpiamente.
+1. Double-click the executable. There is no main window; this is intentional.
+2. The Pokémon sprites will instantly appear at the bottom left of your primary monitor once users connect to the configured voice channel.
+3. **Changing Channels & Exiting:** Locate the application icon (computer shape) in your Windows System Tray (bottom right, near the clock).
+   - **Left Click:** Opens a quick menu to switch between the Discord channels defined in your `config.json` and opens the context menu to safely quit the application.
