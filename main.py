@@ -6,7 +6,7 @@ from PyQt6.QtWidgets import (QApplication, QWidget, QHBoxLayout, QLabel,
 from PyQt6.QtGui import QPixmap, QAction, QCursor
 from PyQt6.QtCore import Qt, QTimer, QPropertyAnimation, QPoint
 
-from discord_ipc import DiscordWebScraper
+from PokecordOverlay.discord_ipc import DiscordWebScraper
 
 class PokemonWidget(QWidget):
     def __init__(self, species, offset_y=0, parent=None):
